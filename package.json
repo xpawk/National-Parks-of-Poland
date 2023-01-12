@@ -1,0 +1,23 @@
+{
+  "name": "parki_narodowe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpawk/parki_narodowe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xpawk/parki_narodowe/issues"
+  },
+  "homepage": "https://github.com/xpawk/parki_narodowe#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
