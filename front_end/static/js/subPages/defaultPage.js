@@ -6,6 +6,11 @@ export default class {
         document.title = title;
     }
     async getHtml() {
-        return "";
+        try{
+            return ``;
+        }catch(error){
+            console.log(error);
+        };
+    
     }
 }

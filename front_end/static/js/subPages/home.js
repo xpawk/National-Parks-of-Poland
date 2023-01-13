@@ -6,12 +6,16 @@ export default class extends defaultPage {
         this.setTitle("Parki Narodowe");
     }
     async getHtml(){
-        return `
-        siema
-        
-        
-        
-        `;
-
+        try{
+            return `
+            siema
+            
+            
+            
+            `;
+        }catch(error){
+            console.log(error);
+        };
+    
     }
 }
