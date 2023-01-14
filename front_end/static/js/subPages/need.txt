@@ -1,0 +1,23 @@
+ for(let i=0 ; i<parks.length; i++){
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      if (parks[i].name.search(/\s/) !== -1) {
+        response = await fetch(
+          `http://localhost:8010/proxy/wiki/Park_Narodowy_${parks[i].name}`
+        );
+      } else {
+        response = await fetch(
+          `http://localhost:8010/proxy/wiki/${parks[i].name}_Park_Narodowy`
+        );
+      }
+ if(i===18){
+  response = await fetch(
+    `http://localhost:8010/proxy/wiki/Tatrzański_Park_Narodowy_(Polska)`
+  );
+
+ }
+      body = await response.text();
+      $ = cheerio.load(body);
+  
+      parks[i].desc = $('#mw-content-text > div > p').slice(0, 1).find('sup').remove().end().text().trim();
+    }
+console.log(parks);
