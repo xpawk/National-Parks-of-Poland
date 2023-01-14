@@ -6,6 +6,7 @@ const navigateTo = (url) => {
   history.pushState(null, null, url);
   router();
 };
+ 
 
 const pathToRegex = (path) =>
   new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
@@ -24,6 +25,7 @@ const getParams = (match) => {
 };
 
 const router = async () => {
+  try{
   const routes = [
     { path: "/", view: home },
     { path: "/park/:id", view: park },
@@ -47,6 +49,9 @@ const router = async () => {
   const view = new match.route.view(getParams(match));
 
   document.querySelector("#app").innerHTML = await view.getHtml();
+}catch(error){
+  console.log(error);
+}
 };
 window.addEventListener("popstate", router);
 
@@ -57,5 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
       navigateTo(e.target.href);
     }
   });
+
   router();
 });
