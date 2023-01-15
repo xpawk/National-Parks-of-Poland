@@ -11,26 +11,35 @@ export default class extends defaultPage {
     try {
       const response = await fetch("http://localhost:3000/parks.json");
       const parks = await response.json();
-      let parkInfo= []
+
+      let parkInfo = [];
       parks.forEach((park) => {
-        parkInfo +=`
-             <div>
-             <h3>
-             <a href="park/${park.name}" data-link> ${park.name} </a>
-             </h3>  
+        if (park.name == this.id) {
+          parkInfo += `
+             <div class="parkData">
+             <h1>
+             ${park.name} 
+             </h1>  
              <img src="${park.photo}" alt="${park.name} Zjęcie">
              <br/>
              <img src="${park.symbol}" alt="${park.name} symbol">
                <p>Powierzchnia: ${park.surface}</p>
                <p>Rok Założenia: ${park.year}</p>
                <p>Województwo: ${park.voivodeship}</p>
-               <p>opis : ${park.desc}</p>
              </div>
+             <div class="parkDetails">
+             <p>${park.desc}</p>
          `;
-       });
-     return `${parkInfo}`;
-     
-  
+          if (park.his !== "") {
+            parkInfo += `
+          <h3>Historia</h3>
+          <p>${park.his}</p>
+          `;
+          }
+          parkInfo += `</div>`;
+        }
+      });
+      return `${parkInfo}`;
     } catch (error) {
       console.log(error);
     }

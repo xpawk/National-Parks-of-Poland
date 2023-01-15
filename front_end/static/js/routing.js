@@ -1,5 +1,5 @@
 import home from "./subPages/home.js";
-import wykres from "./subPages/wykres.js";
+import chart from "./subPages/chart.js";
 import park from "./subPages/park.js";
 
 const navigateTo = (url) => {
@@ -29,7 +29,7 @@ const router = async () => {
   const routes = [
     { path: "/", view: home },
     { path: "/park/:id", view: park },
-    { path: "/wykres", view: wykres },
+    { path: "/wykres", view: chart },
   ];
   const potentialMatches = routes.map((route) => {
     return {

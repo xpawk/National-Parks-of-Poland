@@ -20,9 +20,8 @@ export default class extends defaultPage {
                   <br/>
                   <img src="${park.symbol}" alt="${park.name} symbol">
                     <p>Powierzchnia: ${park.surface}</p>
-                    <p>Rok Założenia: ${park.year}</p>
+                    <p>Rok Utworzenia: ${park.year}</p>
                     <p>Województwo: ${park.voivodeship}</p>
-                    <p>opis : ${park.desc}</p>
                   </div>
               `;
             });
