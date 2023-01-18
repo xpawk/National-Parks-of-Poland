@@ -67,4 +67,5 @@ const getParkData = async () => {
     console.log(error);
   }
 };
-getParkData();
+module.exports = getParkData;
+

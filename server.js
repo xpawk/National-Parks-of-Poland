@@ -1,12 +1,8 @@
-
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
 
-
-require('./fetchingData');
-
-
+const getParkData = require('./fetchingData');
 
 app = express();
 app.use(cors());
@@ -18,4 +14,6 @@ app.get("/*" , (req, res) => {
     res.sendFile(path.resolve(__dirname ,"front_end", "index.html"));
 });
 
-app.listen(process.env.PORT || 3000, () => console.log("Server running..."))
+getParkData().then(() => {
+    app.listen(process.env.PORT || 3000, () => console.log("Server running..."))
+});

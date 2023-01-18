@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+body {
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 50px;
+  background: #f0ffee;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 0 40px;
+  grid-template-areas: "content content";
+  justify-items: center;
+  align-items: center;
+}
+
+.content {
+  grid-area: content;
+  max-width: 1000px;
+}
+
+.greenHeader {
+  background: #e3f4bf;
+  height: 130px;
+}
+.greenHeader_Block {
+  position: fixed;
+  width: 100%;
+  height: 106px;
+  top: 30px;
+  background: #e3f4bf;
+  border-radius: 0px;
+}
+.greenHeader_Logo {
+  width: 80px;
+  height: 82px;
+  padding-top: 20px;
+}
+.greenHeader_Logo:a {
+  height: 82px;
+}
+.greenHeader_Link {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 54px;
+  /* identical to box height */
+  color: #0d750b;
+}
+
+a {
+  text-decoration: none;
+}
+
+img.parks_item_surface_img {
+  width: 2rem;
+  max-height: 2rem;
+}
+
+img.parks_item_voivodeship_img {
+  width: 2rem;
+  height: 2rem;
+}
+
+img.parks_item_symbol_img {
+  width: 28%;
+  height: 28%;
+}
+
+.parks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "parks_item parks_item parks_item parks_item";
+  align-items: center;
+  justify-items: center;
+  padding: 0px;
+  row-gap: 51px;
+  column-gap: 14px;
+  width: 100%;
+  max-width: 1300px;
+}
+.parks_item {
+  grid-area: "parks";
+  width: 100%;
+  max-width: 250px;
+  height: 193px;
+  /* Inside auto layout */
+  align-self: stretch;
+}
+.parks_item_title {
+  position: relative;
+  width: 100%;
+  top: 10px;
+  text-align: center;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 24px;
+  color: #f0ffee;
+  text-shadow: 2px 2px 4px #000000;
+}
+.parks_item_surface {
+  /* Auto layout */
+  margin-top: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+  position: relative;
+  left: 15.5px;
+}
+.parks_item_surface_p {
+  text-shadow: 2px 2px 4px #000000;
+  width: 70%;
+  margin-left: 4px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 21px;
+  color: #f0ffee;
+  /* Inside auto layout */
+}
+.parks_item_voivodeship {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: 15px;
+}
+.parks_item_voivodeship_p {
+  margin-left: 4px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 20px;
+  text-shadow: 2px 2px 4px #000000;
+  color: #f0ffee;
+  /* Inside auto layout */
+}
+.parks_item_button {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 50%;
+  height: 46.39px;
+  left: 20.02px;
+  top: 35px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 24px;
+}
+.parks_item_button_txt {
+  position: relative;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 1000;
+  font-size: 0.7rem;
+  z-index: 1;
+  line-height: 19px;
+  text-align: center;
+  /* identical to box height */
+  color: #f0ffee;
+}
+.parks_item_symbol {
+  /* Auto layout */
+  align-content: right;
+  text-align: right;
+  padding: 0px;
+  position: relative;
+  bottom: 28px;
+  right: 10px;
+}
+.parks_item_background {
+  box-shadow: 2px 2px 8px #000000;
+  position: relative;
+  border-radius: 34px;
+  background-size: cover;
+  width: 100%;
+  height: 233px;
+}
+.parks_item_background::before {
+  background-image: linear-gradient(180deg, #0d750b 9.38%, rgba(13, 117, 11, 0.06) 60.79%);
+  width: 100%;
+  height: 250px;
+  position: absolute;
+  content: "";
+  border-radius: 34px;
+}
+
+@media (max-width: 900px) {
+  .parks {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: " parks_item parks_item parks_item";
+  }
+}
+@media (max-width: 900px) and (max-width: 682px) {
+  .parks {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-areas: " parks_item";
+  }
+  .greenHeader_Logo {
+    margin-left: 38px;
+  }
+  .greenHeader_Link {
+    font-size: 0;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */

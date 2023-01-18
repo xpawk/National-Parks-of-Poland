@@ -20,9 +20,9 @@ export default class extends defaultPage {
              <h1>
              ${park.name} 
              </h1>  
-             <img src="${park.photo}" alt="${park.name} Zjęcie">
+             <img src="${park.photo.replace("/thumb/", "/").split(".jpg")[0] + ".jpg"}" alt="${park.name} Zjęcie">
              <br/>
-             <img src="${park.symbol}" alt="${park.name} symbol">
+             <img src="${park.symbol.replace("/thumb/", "/").split(".svg")[0] + ".svg"}" alt="${park.name} symbol">
                <p>Powierzchnia: ${park.surface}</p>
                <p>Rok Założenia: ${park.year}</p>
                <p>Województwo: ${park.voivodeship}</p>

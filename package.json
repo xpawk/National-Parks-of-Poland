@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "sass --watch front_end/static/style/index.scss front_end/static/style/index.css"
   },
   "repository": {
     "type": "git",
