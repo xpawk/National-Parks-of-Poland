@@ -54,11 +54,18 @@ window.addEventListener("popstate", router);
 
 document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (e) => {
-    if (e.target.matches("[data-link]")) {
+    if (e.target.hasAttribute("data-link")) {
       e.preventDefault();
       navigateTo(e.target.href);
     }
   });
+  const images = document.querySelectorAll("img[data-link]");
 
+  images.forEach((image) => {
+    image.addEventListener("click", (e) => {
+      e.preventDefault();
+      navigateTo(image.getAttribute("data-link"));
+    });
+  });
   router();
 });

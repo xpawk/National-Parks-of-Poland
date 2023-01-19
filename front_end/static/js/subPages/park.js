@@ -39,13 +39,13 @@ export default class extends defaultPage {
                park.symbol.replace("/thumb/", "/").split(".svg")[0] + ".svg"
              }" alt="${park.name} symbol">
              <b class="park_Data_element">${element[0]}</b>
-             <p class="park_Data_element1">${element[1]}</p>
+             <p class="park_Data_element">${element[1]}</p>
          `;
 
           if (park.his !== "") {
             parkInfo += `
           <h3>Historia</h3>
-          <p>${park.his}</p>
+          <p class="park_Data_element">${park.his}</p>
           `;
           }
         }
