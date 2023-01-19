@@ -59,7 +59,6 @@ const getParkData = async () => {
         .text()
         .trim();
     }
-    console.log(parks);
     const json = JSON.stringify(parks);
 
     fs.writeFileSync("parks.json", json);
@@ -68,4 +67,3 @@ const getParkData = async () => {
   }
 };
 module.exports = getParkData;
-
