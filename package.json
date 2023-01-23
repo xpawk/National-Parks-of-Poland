@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "node server.js",
     "compile": "sass --watch front_end/static/style/index.scss front_end/static/style/index.css"
   },
   "repository": {
@@ -21,6 +22,8 @@
     "cheerio": "^1.0.0-rc.12",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6",
+    "indicatrix": "^1.4.1",
     "node-fetch": "^2.6.8"
   }
 }

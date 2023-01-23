@@ -1,7 +1,20 @@
 const cheerio = require("cheerio");
 const fetch = require("node-fetch");
 const fs = require("fs");
-
+const { createProxyMiddleware } = require("http-proxy-middleware");
+const express = require("express");
+const app = express();
+app.use(
+  "/proxy",
+  createProxyMiddleware({
+    target: "https://pl.wikipedia.org",
+    changeOrigin: true,
+    pathRewrite: {
+      "^/proxy/": "",
+    },
+  })
+);
+app.listen(8010);
 const getParkData = async () => {
   try {
     let response = await fetch(

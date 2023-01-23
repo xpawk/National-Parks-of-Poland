@@ -15,7 +15,7 @@ export default class extends defaultPage {
 
       parks.forEach((park) => {
         if (park.name == this.id) {
-          var element = park.desc.split("–");
+          let element = park.desc.split("–");
           if (element[1] == undefined) {
             element = park.desc.split(",");
           }
