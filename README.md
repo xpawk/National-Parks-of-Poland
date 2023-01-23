@@ -22,4 +22,4 @@
 - Node-fetch
 
 ## Author
-Paweł Król
+ - [Paweł Król](https://www.linkedin.com/in/pawel-krol411/) 
