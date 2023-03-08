@@ -1,25 +1,19 @@
-import defaultPage from "./defaultPage.js";
-
-export default class extends defaultPage {
+export default class {
   constructor() {
-    super();
-    this.setTitle("Parki Narodowe");
+    document.title = "Parki Narodowe";
   }
   async getHtml() {
     try {
       const response = await fetch("http://localhost:3000/parks.json");
       const parks = await response.json();
+
       let parkLinks = "";
       parks.forEach((park) => {
-        parkLinks += `
-                  <div class="parks_item">
-                  <div class="parks_item_background" style=background-image:url(${
-                    park.photo
-                      .replace("/thumb/", "/")
-                      .split(".jpg")[0]
-                      .split(".JPG")[0] +
-                    (park.photo.includes(".jpg") ? ".jpg" : ".JPG")
-                  })>
+        let photo = (parkLinks += `
+                  <div class="parks_item" data-src='${park.photo.replace(
+                    "140px",
+                    "350px"
+                  )}'>
                  
                   <h3 class="parks_item_title"> ${park.name} </h3>
                  
@@ -35,22 +29,22 @@ export default class extends defaultPage {
                   }</div>
                   </div>
                   
-                  <div class="parks_item_button">
+                  
                   <a class="parks_item_button_txt" href="park/${
                     park.name
-                  }" data-link>Zobacz Więcej</a>
-                  </div>
+                  }" data-link><button class="parks_item_button" type='button'>Zobacz Więcej</button></a>
+                  
                   <div class="parks_item_symbol">
                   <img class="parks_item_symbol_img" src="${
                     park.symbol.replace("/thumb/", "/").split(".svg")[0] +
                     ".svg"
                   }" />
                   </div>
-                  </div>
+                 
                   
                   </div>
                   
-              `;
+              `);
       });
       parks.sort((a, b) => {
         return (
@@ -72,6 +66,7 @@ export default class extends defaultPage {
               
                     `;
       });
+
       return `
           <div class="parks">${parkLinks}</div>
         <div class="chart">

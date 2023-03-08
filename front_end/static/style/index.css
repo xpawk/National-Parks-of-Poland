@@ -6,37 +6,22 @@ html {
   background: #f0ffee;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 20px;
-  padding: 0 40px;
-  grid-template-areas: "content content";
-  justify-items: center;
-  align-items: center;
-}
-
-.content {
-  grid-area: content;
-  max-width: 1000px;
-}
-
 .greenHeader {
   background: #e3f4bf;
-  height: 130px;
-}
-.greenHeader_Block {
-  position: fixed;
+  top: 0;
   width: 100%;
-  height: 106px;
-  top: 30px;
-  background: #e3f4bf;
-  border-radius: 0px;
+  z-index: 20;
+}
+.greenHeader_content {
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 20px;
 }
 .greenHeader_Logo {
   width: 80px;
-  height: 82px;
-  padding-top: 20px;
+  padding: 5px;
 }
 .greenHeader_Link {
   font-size: 2rem;
@@ -62,23 +47,36 @@ img.parks_item_symbol_img {
   height: 28%;
 }
 
+#app {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 25px;
+}
+
 .parks {
+  margin: 2rem auto 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: "parks_item parks_item parks_item parks_item";
   align-items: center;
   justify-items: center;
-  padding: 0px;
-  row-gap: 51px;
-  column-gap: 14px;
-  width: 100%;
-  max-width: 1300px;
+  gap: 10px;
 }
 .parks_item {
-  grid-area: "parks";
+  box-shadow: 2px 2px 8px #000000;
+  position: relative;
+  border-radius: 34px;
+  background-size: cover;
   width: 100%;
   max-width: 250px;
-  height: 193px;
+  height: 233px;
+}
+.parks_item::before {
+  background-image: linear-gradient(180deg, #0d750b 9.38%, rgba(13, 117, 11, 0.06) 60.79%);
+  width: 100%;
+  height: 233px;
+  position: absolute;
+  content: "";
+  border-radius: 34px;
 }
 .parks_item_title {
   position: relative;
@@ -110,6 +108,7 @@ img.parks_item_symbol_img {
   align-items: center;
   position: relative;
   left: 15px;
+  max-width: 220px;
 }
 .parks_item_voivodeship_p {
   margin-left: 4px;
@@ -119,22 +118,28 @@ img.parks_item_symbol_img {
   color: #f0ffee;
 }
 .parks_item_button {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  width: 50%;
-  height: 46.39px;
-  left: 20.02px;
-  top: 35px;
-  background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  padding: 10px;
+  left: 24.02px;
+  top: 29px;
+  background: #e3f4bf;
+  border: 1px solid #0d750b;
   border-radius: 24px;
+  color: #0d750b;
+  z-index: 10;
+  transition-duration: 500ms;
+  cursor: pointer;
+}
+.parks_item_button:hover {
+  transform: translate(0, -5px);
+  transition-duration: 500ms;
+  color: black;
 }
 .parks_item_button_txt {
-  position: relative;
   font-size: 0.7rem;
-  z-index: 1;
   text-align: center;
   color: #f0ffee;
 }
@@ -146,22 +151,21 @@ img.parks_item_symbol_img {
   bottom: 28px;
   right: 10px;
 }
-.parks_item_background {
-  box-shadow: 2px 2px 8px #000000;
-  position: relative;
-  border-radius: 34px;
-  background-size: cover;
-  width: 100%;
-  height: 233px;
+
+.chart_bar_value {
+  height: 20px;
+  width: calc(var(--value) * 1rem / 12);
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  background: #0d750b;
+  color: #0d750b;
+  border-radius: 0px 20px 20px 0px;
 }
-.parks_item_background::before {
-  background-image: linear-gradient(180deg, #0d750b 9.38%, rgba(13, 117, 11, 0.06) 60.79%);
-  right: 0px;
-  width: 100%;
-  height: 233px;
-  position: absolute;
-  content: "";
-  border-radius: 34px;
+
+.show {
+  transform-origin: 0 0;
+  transition-duration: 2s;
+  transform: scaleX(1);
 }
 
 .chart {
@@ -173,13 +177,6 @@ img.parks_item_symbol_img {
   justify-content: space-between;
   align-content: space-between;
   border-bottom: 1px solid #000;
-}
-.chart_bar_value {
-  height: 20px;
-  width: calc(var(--value) * 1rem / 11);
-  background: #0d750b;
-  color: #0d750b;
-  border-radius: 0px 20px 20px 0px;
 }
 .chart_txt {
   color: black;
@@ -204,51 +201,34 @@ img.parks_item_symbol_img {
   justify-content: center;
 }
 
-@media (max-width: 1100px) {
-  html {
-    font-size: max(1.45vw, 12px);
-  }
-}
 @media (max-width: 1100px) and (max-width: 953px) {
   .parks {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: "parks_item parks_item parks_item";
   }
-  html {
-    font-size: max(1.7vw, 12px);
+  .chart_bar_value {
+    width: calc(var(--value) * 1vw / 8);
+  }
+}
+@media (max-width: 1100px) and (max-width: 953px) and (max-width: 737px) {
+  .parks {
+    grid-template-columns: 1fr 1fr;
   }
   .chart_bar_value {
     width: calc(var(--value) * 1vw / 9);
   }
 }
-@media (max-width: 1100px) and (max-width: 953px) and (max-width: 737px) {
+@media (max-width: 1100px) and (max-width: 953px) and (max-width: 737px) and (max-width: 512px) {
   .parks {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: "parks_item";
-  }
-  html {
-    font-size: max(2.2vw, 12px);
+    grid-template-columns: 1fr;
   }
   .chart_bar_value {
     width: calc(var(--value) * 1vw / 11);
   }
-}
-@media (max-width: 1100px) and (max-width: 953px) and (max-width: 737px) and (max-width: 512px) {
-  .parks {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-areas: "parks_item";
-  }
-  html {
-    font-size: max(2.7vw, 14px);
-  }
-  .chart_bar_value {
-    width: calc(var(--value) * 1vw / 15);
-  }
   .greenHeader_Link {
     font-size: 0;
   }
-  .content {
-    text-align: center;
+  .greenHeader_content {
+    justify-content: center;
   }
   .parks_item_voivodeship {
     justify-content: flex-start;

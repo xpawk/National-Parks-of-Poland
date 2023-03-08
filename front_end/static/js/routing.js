@@ -46,6 +46,40 @@ const router = async () => {
     const view = new match.route.view(getParams(match));
 
     document.querySelector("#app").innerHTML = await view.getHtml();
+    /// Animation to chart
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    });
+    const chart = document.querySelectorAll(".chart_bar_value");
+    chart.forEach((el) => {
+      console.log(el);
+      observer.observe(el);
+    });
+    ///lazy loading
+    const observer1 = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.backgroundImage = `url(${entry.target.getAttribute(
+              "data-src"
+            )})`;
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        rootMargin: "-100px",
+      }
+    );
+
+    const parksItems = document.querySelectorAll(".parks_item");
+    parksItems.forEach((item) => {
+      observer1.observe(item);
+    });
   } catch (error) {
     console.log(error);
   }
@@ -60,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   const images = document.querySelectorAll("img[data-link]");
-
   images.forEach((image) => {
     image.addEventListener("click", (e) => {
       e.preventDefault();

@@ -1,9 +1,7 @@
-import defaultPage from "./defaultPage.js";
 
-export default class extends defaultPage {
+export default class {
   constructor(params) {
-    super(params);
-    this.setTitle(decodeURIComponent(params.id) + " Park Narodowy");
+    document.title =decodeURIComponent(params.id) + " Park Narodowy";
     this.id = decodeURIComponent(params.id);
   }
 

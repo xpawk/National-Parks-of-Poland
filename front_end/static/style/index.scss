@@ -11,34 +11,23 @@ html {
   background: #f0ffee;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 20px;
-  padding: 0 40px;
-  grid-template-areas: "content content";
-  justify-items: center;
-  align-items: center;
-}
-.content {
-  grid-area: content;
-  max-width: 1000px;
-}
 .greenHeader {
   background: #e3f4bf;
-  height: 130px;
-  &_Block {
-    position: fixed;
-    width: 100%;
-    height: 106px;
-    top: 30px;
-    background: #e3f4bf;
-    border-radius: 0px;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+
+  &_content {
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    gap: 20px;
   }
   &_Logo {
     width: 80px;
-    height: 82px;
-    padding-top: 20px;
+    padding: 5px;
   }
   &_Link {
     font-size: 2rem;
@@ -61,23 +50,41 @@ img.parks_item_symbol_img {
   width: 28%;
   height: 28%;
 }
+#app {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 25px;
+}
+
 .parks {
+  margin: 2rem auto 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: "parks_item parks_item parks_item parks_item";
   align-items: center;
   justify-items: center;
-  padding: 0px;
-  row-gap: 51px;
-  column-gap: 14px;
-  width: 100%;
-  max-width: 1300px;
+  gap: 10px;
 
   &_item {
-    grid-area: "parks";
+    box-shadow: 2px 2px 8px #000000;
+    position: relative;
+    border-radius: 34px;
+    background-size: cover;
     width: 100%;
     max-width: 250px;
-    height: 193px;
+    height: 233px;
+    &::before {
+      background-image: linear-gradient(
+        180deg,
+        #0d750b 9.38%,
+        rgba(13, 117, 11, 0.06) 60.79%
+      );
+      width: 100%;
+      height: 233px;
+      position: absolute;
+      content: "";
+      border-radius: 34px;
+    }
+
     &_title {
       position: relative;
       width: 100%;
@@ -109,6 +116,7 @@ img.parks_item_symbol_img {
       align-items: center;
       position: relative;
       left: 15px;
+      max-width: 220px;
       &_p {
         margin-left: 4px;
         text-align: left;
@@ -118,21 +126,28 @@ img.parks_item_symbol_img {
       }
     }
     &_button {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
-      width: 50%;
-      height: 46.39px;
-      left: 20.02px;
-      top: 35px;
-      background: #000000;
-      border: 1px solid rgba(255, 255, 255, 0.24);
+      padding: 10px;
+      left: 24.02px;
+      top: 29px;
+      background: $medium-green;
+      border: 1px solid $dark-green;
       border-radius: 24px;
+      color: $dark-green;
+      z-index: 10;
+      transition-duration: 500ms;
+      cursor: pointer;
+      &:hover {
+        transform: translate(0, -5px);
+        transition-duration: 500ms;
+        color: black;
+      }
+
       &_txt {
-        position: relative;
         font-size: 0.7rem;
-        z-index: 1;
         text-align: center;
         color: #f0ffee;
       }
@@ -145,30 +160,23 @@ img.parks_item_symbol_img {
       bottom: 28px;
       right: 10px;
     }
-    &_background {
-      box-shadow: 2px 2px 8px #000000;
-      position: relative;
-      border-radius: 34px;
-      background-size: cover;
-      width: 100%;
-      height: 233px;
-      &::before {
-        background-image: linear-gradient(
-          180deg,
-          #0d750b 9.38%,
-          rgba(13, 117, 11, 0.06) 60.79%
-        );
-        right: 0px;
-        width: 100%;
-        height: 233px;
-        position: absolute;
-        content: "";
-        border-radius: 34px;
-      }
-    }
   }
 }
 
+.chart_bar_value {
+  height: 20px;
+  width: calc(var(--value) * 1rem / 12);
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  background: $dark-green;
+  color: #0d750b;
+  border-radius: 0px 20px 20px 0px;
+}
+.show {
+  transform-origin: 0 0;
+  transition-duration: 2s;
+  transform: scaleX(1);
+}
 .chart {
   margin-bottom: 50px;
   color: #e3f4bf;
@@ -177,14 +185,6 @@ img.parks_item_symbol_img {
     justify-content: space-between;
     align-content: space-between;
     border-bottom: 1px solid #000;
-
-    &_value {
-      height: 20px;
-      width: calc(var(--value) * 1rem / 11);
-      background: $dark-green;
-      color: #0d750b;
-      border-radius: 0px 20px 20px 0px;
-    }
   }
   &_txt {
     color: black;
@@ -212,52 +212,36 @@ img.parks_item_symbol_img {
 }
 
 @media (max-width: 1100px) {
-  html {
-    font-size: max(1.45vw, 12px);
-  }
   @media (max-width: 953px) {
     .parks {
       grid-template-columns: repeat(3, 1fr);
-      grid-template-areas: "parks_item parks_item parks_item";
-    }
-    html {
-      font-size: max(1.7vw, 12px);
     }
     .chart_bar_value {
-      width: calc(var(--value) * 1vw / 9);
+      width: calc(var(--value) * 1vw / 8);
     }
     @media (max-width: 737px) {
       .parks {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-areas: "parks_item";
-      }
-      html {
-        font-size: max(2.2vw, 12px);
+        grid-template-columns: 1fr 1fr;
       }
       .chart_bar_value {
-        width: calc(var(--value) * 1vw / 11);
+        width: calc(var(--value) * 1vw / 9);
       }
       @media (max-width: 512px) {
         .parks {
-          grid-template-columns: repeat(1, 1fr);
-          grid-template-areas: "parks_item";
-        }
-        html {
-          font-size: max(2.7vw, 14px);
+          grid-template-columns: 1fr;
         }
         .chart_bar_value {
-          width: calc(var(--value) * 1vw / 15);
+          width: calc(var(--value) * 1vw / 11);
         }
         .greenHeader {
-          
           &_Link {
             font-size: 0;
           }
         }
-        .content {
-          text-align: center;
+        .greenHeader_content {
+          justify-content: center;
         }
-        .parks_item_voivodeship{
+        .parks_item_voivodeship {
           justify-content: flex-start;
         }
       }
@@ -293,6 +277,5 @@ img.parks_item_symbol_img {
   }
 }
 b {
- 
   font-family: "Poppins", sans-serif;
 }
