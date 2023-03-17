@@ -1,7 +1,6 @@
-
 export default class {
   constructor(params) {
-    document.title =decodeURIComponent(params.id) + " Park Narodowy";
+    document.title = decodeURIComponent(params.id) + " Park Narodowy";
     this.id = decodeURIComponent(params.id);
   }
 
@@ -13,38 +12,60 @@ export default class {
 
       parks.forEach((park) => {
         if (park.name == this.id) {
-          let element = park.desc.split("–");
-          if (element[1] == undefined) {
-            element = park.desc.split(",");
+          let tweak = "";
+          let parkname = "";
+          if (/\s/.test(park.name)) {
+            parkname = `Park Narodowy ${park.name}`;
+          } else {
+            parkname = `${park.name} Park Narodowy`;
+          }
+          if (park.name == "Tatrzański") {
+            tweak =
+              'style="margin-top: 60px; border:0px !important; width:280px; box-shadow:none"';
           }
 
           parkInfo += `
-             <div class="park">
+          <div class='park_header'>
              <img class=park_Photo src="${
                park.photo
                  .replace("/thumb/", "/")
                  .split(".jpg")[0]
                  .split(".JPG")[0] +
                (park.photo.includes(".jpg") ? ".jpg" : ".JPG")
-             }" alt="${park.name} Zjęcie">
-             <br/>
-             <div class="park_Data">
-               <b >Powierzchnia:</b> ${park.surface} <br/>
-               <b>Rok Założenia:</b> ${park.year} <br/>
-               <b>Województwo:</b> ${park.voivodeship}
+             }" alt="${parkname} Zdjęcie"/>
+            
              </div>
-             <img class="park_Symbol" src="${
-               park.symbol.replace("/thumb/", "/").split(".svg")[0] + ".svg"
-             }" alt="${park.name} symbol">
-             <b class="park_Data_element">${element[0]}</b>
-             <p class="park_Data_element">${element[1]}</p>
+             
+            
+          
+            <div class="park"> 
+            <h2 class='park_name'>${parkname}</h2>
+            <div class='park_Symbol_container'>
+            <img class="park_Symbol" ${tweak} src="${
+            park.symbol.replace("/thumb/", "/").split(".svg")[0] + ".svg"
+          }" alt="${parkname} symbol">
+            </div>
+            
+           
+             
+      
+             <p class="park_Data_element">${park.desc}</p>
+             <div class="park_Data">
+             <div>
+             <b >Powierzchnia:</b> ${park.surface} <br/>
+             <b>Rok Założenia:</b> ${park.year} <br/>
+             <b>Województwo:</b> ${park.voivodeship}
+             </div>
+           </div>
+            
+    
          `;
 
           if (park.his !== "") {
             parkInfo += `
-          <h3>Historia</h3>
-          <p class="park_Data_element">${park.his}</p>
-          `;
+          <p class="park_Data_element"><b>Historia</b></br></br>${park.his}</p>
+          
+          </div>`;
           }
         }
       });

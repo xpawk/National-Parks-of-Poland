@@ -4,6 +4,7 @@ html {
   font-family: "Poppins", sans-serif;
   font-weight: 800px;
   background: #f0ffee;
+  overflow-x: hidden;
 }
 
 .greenHeader {
@@ -201,6 +202,82 @@ img.parks_item_symbol_img {
   justify-content: center;
 }
 
+.park_header {
+  position: absolute;
+  left: 0%;
+  max-width: none;
+  height: 380px;
+  margin: 0 auto;
+  z-index: -1;
+  width: 110%;
+  border-image-slice: 1;
+  border-image-source: repeating-linear-gradient(90deg, #0d750b 0%, #0d750b 2%, #e3f4bf 2%, #e3f4bf 4%);
+  box-shadow: -10px 0 20px 5px #e3f4bf;
+}
+.park_header::before {
+  background-image: linear-gradient(transparent, transparent 60%, #0d750b);
+  height: 380px;
+  width: 100%;
+  position: absolute;
+  content: "";
+}
+
+.park {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 10;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.park_Title {
+  text-align: center;
+  width: 100%;
+}
+.park_name {
+  text-shadow: 1px 1px 2px black;
+  padding-top: 280px;
+  padding-bottom: 0;
+  z-index: 20;
+  color: white;
+  font-size: 2.1rem;
+}
+.park_Photo {
+  width: 100%;
+  height: inherit;
+  text-align: center;
+  object-fit: cover;
+}
+.park_Symbol {
+  border-radius: 100%;
+  box-shadow: 0 0 5px 10px white;
+  width: 135px;
+  height: 135px;
+  justify-self: right;
+}
+.park_Symbol_container {
+  margin-top: -65px;
+  padding-right: 35px;
+  display: flex;
+  width: calc(100% - 35px);
+  justify-content: right;
+}
+.park_Data {
+  justify-self: right;
+  font-size: 0.9rem;
+  padding-top: 30px;
+  margin: 0;
+  width: 200px;
+}
+.park_Data_element {
+  margin-bottom: 5px;
+  padding-right: 50px;
+  text-align: left;
+  width: calc(100% - 250px);
+}
+
+b {
+  font-family: "Poppins", sans-serif;
+}
+
 @media (max-width: 1100px) and (max-width: 953px) {
   .parks {
     grid-template-columns: repeat(3, 1fr);
@@ -210,6 +287,29 @@ img.parks_item_symbol_img {
   }
 }
 @media (max-width: 1100px) and (max-width: 953px) and (max-width: 737px) {
+  .park_Data {
+    width: 100%;
+    order: 0;
+  }
+  .park_Data_element {
+    padding: 0px;
+    order: 1;
+    width: 100%;
+  }
+  .park_Symbol_container {
+    width: 100%;
+    justify-content: center !important;
+    margin-right: 0;
+    margin-top: -110px;
+    padding: 0;
+  }
+  .park_name {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 150px;
+    padding-top: 210px;
+  }
   .parks {
     grid-template-columns: 1fr 1fr;
   }
@@ -233,38 +333,6 @@ img.parks_item_symbol_img {
   .parks_item_voivodeship {
     justify-content: flex-start;
   }
-}
-.park {
-  margin-top: 70px;
-  font-weight: 10;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.park_Title {
-  text-align: center;
-  width: 100%;
-}
-.park_Photo {
-  width: 50%;
-}
-.park_Symbol {
-  order: 0;
-  height: 15%;
-  width: 15%;
-}
-.park_Data {
-  text-align: left;
-}
-.park_Data_element {
-  text-align: left;
-  margin-top: 20px;
-  width: 100%;
-}
-
-b {
-  font-family: "Poppins", sans-serif;
 }
 
 /*# sourceMappingURL=index.css.map */
